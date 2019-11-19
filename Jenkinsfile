@@ -1,6 +1,6 @@
 pipeline {
  agent any
- def mvnHome = tool 'M3'
+ //def mvnHome = tool 'M3'
 
  stages {
   stage('Checkout Code') {
