@@ -1,7 +1,9 @@
 pipeline {
  agent any
- //def mvnHome = tool 'M3'
-
+tools { 
+        maven 'Maven 3.5.2' 
+        jdk 'jdk8' 
+    }
  stages {
   stage('Checkout Code') {
    steps {
@@ -10,17 +12,17 @@ pipeline {
   }
   stage('Compile') {
    steps {
-    sh "'${mvnHome}/bin/mvn' compile"
+    sh "mvn compile"
    }
   }
   stage('JUnit Test') {
    steps {
-    sh "'${mvnHome}/bin/mvn' clean test"
+    sh "mvn clean test"
    }
   }
   stage('Performance Test') {
    steps {
-    sh "'${mvnHome}/bin/mvn' verify"
+    sh "mvn verify"
    }
   }
   stage('Deploy') {
