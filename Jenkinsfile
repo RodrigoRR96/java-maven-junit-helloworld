@@ -7,6 +7,7 @@ pipeline {
  stages {
   stage('Checkout Code') {
    steps {
+    sh "whoami"
     git 'https://github.com/RodrigoR96/java-maven-junit-helloworld.git'
    }
   }
