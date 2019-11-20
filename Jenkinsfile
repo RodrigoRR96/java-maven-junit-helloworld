@@ -1,6 +1,6 @@
 pipeline {
- //agent { docker { image 'maven:3.5.2' } }
-agent any
+ agent { docker { image 'maven:3.5.2' } }
+//agent any
  //tools { 
         //maven 'Maven 3.5.2' 
         //jdk 'jdk8' 
