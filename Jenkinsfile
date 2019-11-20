@@ -8,19 +8,19 @@ pipeline {
     git 'https://github.com/RodrigoR96/java-maven-junit-helloworld.git'
    }
   }
-  stage('Compile') {
+  stage('Build') {
    steps {
     sh "mvn compile"
    }
   }
-  stage('JUnit Test') {
+  stage('Unit Tests') {
    steps {
     sh "mvn clean test"
    }
   }
-  stage('Performance Test') {
+  stage('Security Analisis') {
    steps {
-    sh "mvn verify"
+    sh "mvn verify sonar:sonar"
    }
   }
   stage('Deploy') {
