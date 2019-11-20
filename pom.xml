@@ -25,10 +25,10 @@
     <mockito.version>2.21.0</mockito.version>
     <jacoco.plugin.version>0.8.1</jacoco.plugin.version>
     
-    <sonar.projectKey>SalmaValverde_java-maven-junit-helloworld</sonar.projectKey>
-    <sonar.organization>salmavalverde</sonar.organization>
+    <sonar.projectKey>RodrigoR96_java-maven-junit-helloworld</sonar.projectKey>
+    <sonar.organization>rodrigor96</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-    <sonar.login>Jenkins</sonar.login>
+    <sonar.login>JavaProject</sonar.login>
     </properties>
 
   <dependencies>
