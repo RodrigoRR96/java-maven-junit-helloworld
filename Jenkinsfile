@@ -19,6 +19,11 @@ pipeline {
    steps {
     sh "mvn clean test"
    }
+   post {
+	always {
+		junit '**/surefire-reports/**/*.xml'
+	}
+   }
   }
   stage('Security Analisis') {
    steps {
