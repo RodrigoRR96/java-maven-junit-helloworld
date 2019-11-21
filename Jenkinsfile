@@ -23,7 +23,7 @@ pipeline {
   }
   stage('Security Analisis') {
    steps {
-    sh "mvn verify sonar:sonar -Dsonar.login='$SERVICE_CREDS' -Dsonar.projectKey=RodrigoR96_java-maven-junit-helloworld -Dsonar.host.url=https://sonarcloud.io "
+    sh 'mvn verify sonar:sonar -Dsonar.login="$SERVICE_CREDS" -Dsonar.projectKey=RodrigoR96_java-maven-junit-helloworld -Dsonar.host.url=https://sonarcloud.io'
    }
   }
   stage('Deploy') {
