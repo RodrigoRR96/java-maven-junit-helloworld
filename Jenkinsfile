@@ -7,7 +7,7 @@ pipeline {
                 SERVICE_CREDS = credentials('TokenPrueba')
             }
    steps {
-    echo '$SERVICE_CREDS'
+    sh 'echo "Service user is $SERVICE_CREDS"'
     git 'https://github.com/RodrigoR96/java-maven-junit-helloworld.git'
    }
   }
