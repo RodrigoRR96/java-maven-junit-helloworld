@@ -35,14 +35,6 @@ pipeline {
      sh 'mvn verify sonar:sonar -Dsonar.login="$SERVICE_CREDS"'
     }
    }
-   /*post {
-	timeout(time: 5, unit: 'MINUTES') {
-		def qualitygate = waitForQualityGate()
-		if (qualitygate.status != "OK") {
-		error "Pipeline aborted due to quality gate coverage failure."
-		}
-	}
-   } */
   }
   stage("Quality Gate") {
    steps {
