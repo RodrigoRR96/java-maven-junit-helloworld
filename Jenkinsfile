@@ -27,8 +27,10 @@ pipeline {
   }
   stage('Security Analisis') {
    steps {
+	   withSonarQubeEnv('My SonarQube Server'){
     sh 'mvn verify sonar:sonar -Dsonar.login="$SERVICE_CREDS"'
-   }
+	   }
+         }
    /*post {
 	timeout(time: 5, unit: 'MINUTES') {
 		def qualitygate = waitForQualityGate()
