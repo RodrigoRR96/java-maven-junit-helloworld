@@ -4,7 +4,7 @@ pipeline {
  stages {
   stage('Checkout Code') {
    environment {
-                SERVICE_CREDS = credentials('TokenPrueba')
+                SERVICE_CREDS = credentials('javaProject')
             }
    steps {
     sh 'echo "Service user is $SERVICE_CREDS"'
@@ -23,7 +23,7 @@ pipeline {
   }
   stage('Security Analisis') {
    steps {
-    sh "mvn verify sonar:sonar"
+    sh "mvn verify sonar:sonar -Dsonar.login=$SERVICE_CREDS -Dsonar.projectKey=RodrigoR96_java-maven-junit-helloworld -Dsonar.host.url=https://sonarcloud.io "
    }
   }
   stage('Deploy') {
