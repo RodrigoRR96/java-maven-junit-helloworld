@@ -31,7 +31,7 @@ pipeline {
   }
   stage('Security Analisis') {
    steps {
-    withSonarQubeEnv('SonarQubeScanner') {
+    withSonarQubeEnv('sonarqube') {
      sh 'mvn verify sonar:sonar -Dsonar.login="$SERVICE_CREDS"'
     }
    }
