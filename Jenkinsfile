@@ -1,11 +1,15 @@
 pipeline {
- agent { docker { image 'maven:3.5.2' } }
-//agent any
+ agent {
+  docker {
+   image 'maven:3.5.2'
+  }
+ }
+ //agent any
  stages {
   stage('Checkout Code') {
    environment {
-                SERVICE_CREDS = credentials('javaProject')
-            }
+    SERVICE_CREDS = credentials('javaProject')
+   }
    steps {
     git 'https://github.com/RodrigoR96/java-maven-junit-helloworld.git'
    }
@@ -20,17 +24,17 @@ pipeline {
     sh "mvn clean test"
    }
    post {
-	always {
-		junit '**/surefire-reports/**/*.xml'
-	}
+    always {
+     junit '**/surefire-reports/**/*.xml'
+    }
    }
   }
   stage('Security Analisis') {
    steps {
-	   withSonarQubeEnv('My SonarQube Server'){
-    sh 'mvn verify sonar:sonar -Dsonar.login="$SERVICE_CREDS"'
-	   }
-         }
+    withSonarQubeEnv('My SonarQube Server') {
+     sh 'mvn verify sonar:sonar -Dsonar.login="$SERVICE_CREDS"'
+    }
+   }
    /*post {
 	timeout(time: 5, unit: 'MINUTES') {
 		def qualitygate = waitForQualityGate()
@@ -38,18 +42,16 @@ pipeline {
 		error "Pipeline aborted due to quality gate coverage failure."
 		}
 	}
-   } */ 
+   } */
   }
   stage("Quality Gate") {
-	  steps {
-   timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
-    def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
-    if (qg.status != 'OK') {
-      error "Pipeline aborted due to quality gate failure: ${qg.status}"
+   steps {
+    timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
+     waitForQualityGate abortPipeline: true
     }
    }
-	         }
   }
+
   stage('Deploy') {
    steps {
     echo 'Deploy...'
