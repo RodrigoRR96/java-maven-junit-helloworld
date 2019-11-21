@@ -3,8 +3,11 @@ pipeline {
 //agent any
  stages {
   stage('Checkout Code') {
+   environment {
+                SERVICE_CREDS = credentials('TokenPrueba')
+            }
    steps {
-    //sh 'whoami'
+    echo '$SERVICE_CREDS'
     git 'https://github.com/RodrigoR96/java-maven-junit-helloworld.git'
    }
   }
