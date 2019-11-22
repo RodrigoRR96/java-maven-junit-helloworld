@@ -51,9 +51,7 @@ pipeline {
   }
 
   stage('Deploy') {
-   agent { label 'master' }
    steps {
-    echo 'Deploy...'
     sh'ls -l'
     sh'docker build -t hello-world .'
     sh'docker run hello-world'
