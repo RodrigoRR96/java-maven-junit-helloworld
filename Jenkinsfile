@@ -29,6 +29,11 @@ pipeline {
     }
    }
   }
+  stage('FindBugs Plugin') {
+   steps {
+    sh "mvn site"
+   }
+  }
   stage('Security Analisis') {
    steps {
     withSonarQubeEnv('sonarqube') {
