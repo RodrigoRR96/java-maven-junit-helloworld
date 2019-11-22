@@ -51,6 +51,7 @@ pipeline {
   }
 
   stage('Deploy') {
+   agent { label 'master' }
    steps {
     echo 'Deploy...'
     sh'ls -l'
