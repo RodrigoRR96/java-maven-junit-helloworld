@@ -21,7 +21,7 @@ public class HelloApp {
         int times = DEFAULT_TIMES;
         if (args.length >= 1) {
             try {
-                times = Integer.valueOf(args[0]);
+                times = Integer.parseInt(args[0]);
             } catch (NumberFormatException e) {
                 System.err.println("I don't understand the parameter you passed me. Is it a number? " +
                         "Parameter was: [" + args[0] + "]");
