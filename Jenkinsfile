@@ -53,7 +53,8 @@ pipeline {
   stage('Deploy') {
    steps {
     echo 'Deploy...'
-    sh'mvn package'
+    sh'docker build -t hello-world .'
+    sh'docker run hello-world'
    }
   }
  }
