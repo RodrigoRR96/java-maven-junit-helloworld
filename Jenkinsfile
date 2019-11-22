@@ -52,7 +52,7 @@ pipeline {
 
   stage('Deploy') {
    steps {
-    sh'ls -l'
+    sh'pwd'
     sh'docker build -t hello-world .'
     sh'docker run hello-world'
    }
