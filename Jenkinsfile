@@ -52,10 +52,12 @@ pipeline {
 
   stage('Deploy') {
    steps {
+    agent {
+    dockerfile {}
+    }
     sh'pwd'
     sh'docker build -t hello-world .'
     sh'docker run hello-world'
-   }
   }
  }
  post {
