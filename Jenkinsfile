@@ -53,7 +53,7 @@ pipeline {
   stage('Deploy') {
    steps {
     echo 'Deploy...'
-    sh'll'
+    sh'ls -l'
     sh'docker build -t hello-world .'
     sh'docker run hello-world'
    }
