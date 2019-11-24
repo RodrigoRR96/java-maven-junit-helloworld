@@ -82,7 +82,7 @@ pipeline {
    steps {
     sh'pwd'
     sh'docker build -t hello-world .'
-    sh'docker run hello-world'
+    //sh'docker run hello-world'
    }
   }
  }
