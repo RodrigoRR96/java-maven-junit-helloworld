@@ -51,6 +51,7 @@ pipeline {
   }
 
   stage('Deploy') {
+   agent any
    steps {
     sh'pwd'
     sh'docker build -t hello-world .'
