@@ -87,6 +87,7 @@ pipeline {
   }
 
   stage('CleanWorkspace') {
+   agent any
    steps {
     cleanWs()
    }
