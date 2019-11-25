@@ -85,11 +85,11 @@ pipeline {
     //sh'docker run hello-world'
    }
   }
- }
- stage('CleanWorkspace') {
-  agent any
-  steps {
-   cleanWs()
+
+  stage('CleanWorkspace') {
+   steps {
+    cleanWs()
+   }
   }
  }
 }
