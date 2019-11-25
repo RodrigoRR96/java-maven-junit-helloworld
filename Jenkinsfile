@@ -4,11 +4,11 @@ pipeline {
  //agent any
  stages {
   stage('Checkout Code') {
-    agent {
-  docker {
-   image 'maven:3.5.2'
-  }
- }
+   agent {
+    docker {
+     image 'maven:3.5.2'
+    }
+   }
    environment {
     SERVICE_CREDS = credentials('javaProject')
    }
@@ -17,21 +17,21 @@ pipeline {
    }
   }
   stage('Build') {
-    agent {
-  docker {
-   image 'maven:3.5.2'
-  }
- }
+   agent {
+    docker {
+     image 'maven:3.5.2'
+    }
+   }
    steps {
     sh "mvn compile"
    }
   }
   stage('Unit Tests') {
-    agent {
-  docker {
-   image 'maven:3.5.2'
-  }
- }
+   agent {
+    docker {
+     image 'maven:3.5.2'
+    }
+   }
    steps {
     sh "mvn clean test"
    }
@@ -42,21 +42,21 @@ pipeline {
    }
   }
   stage('FindBugs Plugin') {
-    agent {
-  docker {
-   image 'maven:3.5.2'
-  }
- }
+   agent {
+    docker {
+     image 'maven:3.5.2'
+    }
+   }
    steps {
     sh "mvn site"
    }
   }
   stage('Security Analisis') {
-    agent {
-  docker {
-   image 'maven:3.5.2'
-  }
- }
+   agent {
+    docker {
+     image 'maven:3.5.2'
+    }
+   }
    steps {
     withSonarQubeEnv('sonarqube') {
      sh 'mvn verify sonar:sonar -Dsonar.login="$SERVICE_CREDS"'
@@ -64,11 +64,11 @@ pipeline {
    }
   }
   stage("Quality Gate") {
-    agent {
-  docker {
-   image 'maven:3.5.2'
-  }
- }
+   agent {
+    docker {
+     image 'maven:3.5.2'
+    }
+   }
    steps {
     timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
      sleep(20)
@@ -80,15 +80,16 @@ pipeline {
   stage('Deploy') {
    agent any
    steps {
-    sh'pwd'
-    sh'docker build -t hello-world .'
+    sh 'pwd'
+    sh 'docker build -t hello-world .'
     //sh'docker run hello-world'
    }
   }
  }
-  stage('CleanWorkspace') {
-   steps {
-    cleanWs()
-   }
+ stage('CleanWorkspace') {
+  agent any
+  steps {
+   cleanWs()
   }
+ }
 }
