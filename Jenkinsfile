@@ -86,11 +86,18 @@ pipeline {
    }
   }
 
-  stage('CleanWorkspace') {
+  /*stage('CleanWorkspace') {
    agent any
    steps {
     cleanWs()
    }
-  }
+  }*/
  }
+ post {
+      always {
+        node(null) {
+          cleanWs()
+        }
+      }
+    }
 }
